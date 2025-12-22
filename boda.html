@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>¡Nos casamos! | Paola y Javier</title>
+  <meta name="description" content="Web de boda divertida y desenfadada de Paola y Javier. Información de ceremonia, fiesta, RSVP, hoteles y más." />
+  <meta name="theme-color" content="#6A7C68" />
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:title" content="¡Nos casamos! | Paola y Javier" />
+  <meta property="og:description" content="Ceremonia en Teror y cóctel-fiesta en Firgas. ¡Nos vemos en la pista!" />
+  <meta property="og:image" content="/assets/Hero1.jpg" />
+  <meta property="og:image:alt" content="Boda de Paola y Javier" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="¡Nos casamos! | Paola y Javier" />
+  <meta name="twitter:description" content="Ceremonia en Teror y cóctel-fiesta en Firgas. ¡Nos vemos en la pista!" />
+  <meta name="twitter:image" content="/assets/Hero1.jpg" />
+  <!-- Preload del hero (misma URL que en CSS) -->
+  <link rel="preload" as="image" href="/assets/Hero1.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;600;700&family=Sacramento&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#F9F6EF;      /* marfil cálido */
+      --fg:#2E2E2E;      /* gris antracita */
+      --muted:#6b6b6b;
+      --brand:#6A7C68;   /* verde oliva suave */
+      --brand-2:#D9C6A3; /* dorado pálido */
+      --accent:#D9C6A3;  /* acento dorado */
+      --card:#ffffff;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+    /* Títulos con la serif del logo */
+    h1,h2,h3{font-family:"Cormorant Garamond",serif}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{width:min(1100px, 92vw);margin-inline:auto}
+    header{
+      position:sticky;top:0;z-index:50;background:rgba(255,253,248,.86);backdrop-filter:saturate(140%) blur(6px);
+      border-bottom:1px solid rgba(0,0,0,.05)
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0}
+    .logo{font-family:Sacramento,cursive;font-size:2rem;color:var(--brand)}
+    .menu{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+    .btn{display:inline-block;border:none;background:var(--brand);color:#fff;padding:.85rem 1.1rem;border-radius:999px;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
+    .btn.alt{background:var(--brand-2);color:#3a2e1c}
+    .btn.ghost{background:#fff;color:var(--brand);border:2px solid var(--brand)}
+
+    /* HERO */
+    .hero{position:relative;isolation:isolate}
+    /* Overlay que sí oscurece la foto del hero */
+    .hero .wrap{position:relative;min-height:70vh;display:grid;place-items:center;text-align:center;color:#fff;background:url('/assets/Hero1.jpg') center/cover;border-radius:0 0 28px 28px}
+    .hero .wrap::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.25) 40%, transparent 70%);z-index:0;border-radius:0 0 28px 28px}
+    .hero .wrap > *{position:relative;z-index:1}
+
+    .hero h1{font-family:Sacramento,cursive;font-size:clamp(3rem,8vw,6rem);margin:0}
+    .hero p{font-size:clamp(1rem,2.2vw,1.25rem);opacity:.95;margin:.5rem 0 1.2rem}
+
+    .chips{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-top:.6rem}
+    .chip{background:rgba(255,255,255,.9);color:#2a2a2a;padding:.4rem .8rem;border-radius:999px;font-weight:600}
+
+    section{padding:72px 0}
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(1rem,3vw,2rem)}
+    .section-title{font-size:clamp(1.6rem,3.5vw,2.2rem);margin:0 0 .6rem}
+    .subtitle{color:var(--muted);margin-top:0}
+
+    .grid{display:grid;gap:1.2rem}
+    @media(min-width:900px){.grid.cols-2{grid-template-columns:1.1fr 1fr}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
+
+    .timeline{position:relative;padding-left:28px}
+    .timeline::before{content:"";position:absolute;left:11px;top:4px;bottom:4px;width:4px;background:linear-gradient(var(--brand),var(--brand-2));border-radius:2px}
+    .t-item{position:relative;margin:1rem 0}
+    .t-item h3{ padding-left:28px; }
+    .t-item::before{content:"";position:absolute;left:-2px;top:.35rem;width:16px;height:16px;border-radius:50%;background:var(--accent);border:3px solid #fff;box-shadow:0 0 0 3px rgba(0,0,0,.06)}
+
+    .agenda{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+    .pill{background:#fff;border:1px dashed var(--brand);border-radius:16px;padding:1rem;display:flex;gap:.7rem;align-items:center}
+    .pill b{font-size:1.05rem}
+
+    .info-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.8rem}
+    .polaroid{background:#fff;padding:.6rem;border-radius:12px;box-shadow:var(--shadow);transform:rotate(var(--r, -1.5deg));transition:transform .25s}
+    .polaroid:hover{transform:rotate(0deg) scale(1.02)}
+    .polaroid img{width:100%;height:220px;object-fit:cover;border-radius:8px}
+    .caption{font-size:.9rem;color:#444;margin-top:.4rem;text-align:center}
+
+    footer{padding:40px 0 60px;text-align:center;color:#666}
+
+    form{display:grid;gap:.8rem}
+    input,select,textarea{width:100%;padding:.9rem 1rem;border-radius:12px;border:1.5px solid #e6e2d9;background:#fff}
+    label{font-weight:600}
+    .form-row{display:grid;gap:.8rem}
+    @media(min-width:680px){.form-row{grid-template-columns:1fr 1fr}}
+
+    .note{color:var(--muted);font-size:.95rem}
+    .floating{position:fixed;right:16px;bottom:16px;z-index:60}
+    .badge{background:var(--accent);padding:.2rem .5rem;border-radius:8px;font-weight:700}
+    .muted{color:var(--muted)}
+
+    .countdown{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-top:.8rem}
+    .cd-box{background:#fff;padding:.6rem 1rem;border-radius:12px;box-shadow:var(--shadow);min-width:90px;text-align:center}
+    .cd-num{font-size:1.5rem;font-weight:700}
+    .cd-label{font-size:.8rem;color:var(--muted)}
+
+    /* ===== Ajustes móvil ===== */
+@media (max-width: 768px) {
+
+  /* Header más compacto */
+  .nav {
+    padding: .6rem 0;
+  }
+
+  /* Logo un poco más pequeño */
+  .logo {
+    font-size: 1.6rem;
+  }
+
+  /* Menú adaptable */
+  .menu {
+    gap: .5rem;
+    justify-content: center;
+    font-size: .9rem;
+  }
+
+  .menu a {
+    white-space: nowrap;
+  }
+
+  /* Hero más corto en móvil */
+  .hero .wrap {
+    min-height: 60vh;
+    padding: 2rem 0;
+  }
+
+  /* Títulos más ajustados */
+  .hero h1 {
+    font-size: 3.2rem;
+  }
+
+  /* Countdown más compacto */
+  .cd-box {
+    min-width: 72px;
+    padding: .5rem .6rem;
+  }
+
+  .cd-num {
+    font-size: 1.2rem;
+  }
+
+  /* Botón flotante más discreto */
+  .floating {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .floating .btn {
+    padding: .6rem .9rem;
+    font-size: .9rem;
+  }
+
+  /* Timeline más legible */
+  .timeline {
+    padding-left: 22px;
+  }
+
+  .t-item h3 {
+    font-size: 1.1rem;
+  }
+}
+/* ===== Menú: enlace activo ===== */
+.menu a{
+  position:relative;
+  padding:.35rem .2rem;
+  border-radius:10px;
+}
+
+.menu a.active{
+  text-decoration:none;
+  color:var(--fg);
+  background:rgba(106,124,104,.12); /* suave, acorde a tu verde */
+}
+
+.menu a.active::after{
+  content:"";
+  position:absolute;
+  left:.35rem;
+  right:.35rem;
+  bottom:-6px;
+  height:3px;
+  border-radius:999px;
+  background:var(--brand);
+}
+#fotos-invitados .card{
+  box-shadow:none;
+  border:1px solid rgba(0,0,0,.06);
+}.qr-wrap{
+  margin-top:1rem;
+  display:grid;
+  justify-items:center;
+  gap:.6rem;
+}
+.qr-wrap img{
+  width:180px;
+  height:180px;
+  border-radius:14px;
+  background:#fff;
+  box-shadow:var(--shadow);
+  padding:.6rem;
+}
+/* Galería fija clicable */
+.gallery button.polaroid-btn{
+  all:unset;
+  cursor:pointer;
+  display:block;
+}
+.gallery button.polaroid-btn:focus-visible{
+  outline:3px solid rgba(106,124,104,.35);
+  outline-offset:6px;
+  border-radius:12px;
+}/* Lightbox */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+  padding:18px;
+}
+.lightbox.open{ display:flex; }
+.lightbox-inner{
+  max-width:min(1100px, 96vw);
+  max-height:88vh;
+  position:relative;
+}
+.lightbox-img{
+  width:100%;
+  height:auto;
+  max-height:88vh;
+  object-fit:contain;
+  border-radius:14px;
+  background:#111;
+}
+.lightbox-close{
+  position:absolute;
+  top:-12px;
+  right:-12px;
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  border:0;
+  cursor:pointer;
+  font-weight:800;
+  box-shadow:var(--shadow);
+}
+.lightbox-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  border:0;
+  width:44px;
+  height:44px;
+  border-radius:999px;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+}
+.lightbox-prev{ left:-10px; }
+.lightbox-next{ right:-10px; }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">Paola & Javier</div>
+      <nav class="menu" aria-label="Navegación principal">
+        <a href="#historia">Historia</a>
+        <a href="#ceremonia">Ceremonia</a>
+        <a href="#fiesta">Fiesta</a>
+        <a href="#agenda">Agenda</a>
+        <a href="#dress">Dress code</a>
+        <a href="#alquiler">Alquiler vehículos</a>
+        <a href="#rsvp" class="btn ghost">RSVP</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="wrap">
+        <div class="container">
+          <h1>¡Nos casamos!</h1>
+          <p><strong>Paola & Javier</strong> · <span class="badge">31 de octubre de 2026</span> · Teror</p>
+          <div class="chips">
+            <span class="chip">#Pao&Javi</span>
+            <span class="chip">#31oct26</span>
+            <span class="chip">#BodaenGC</span>
+          </div>
+          <p style="margin-top:1.1rem"><a href="#historia" class="btn">Descubre nuestra boda</a></p>
+          <div id="countdown" class="countdown" aria-label="Cuenta atrás para la ceremonia">
+            <div class="cd-box"><div class="cd-num" id="cd-days">--</div><div class="cd-label">Días</div></div>
+            <div class="cd-box"><div class="cd-num" id="cd-hours">--</div><div class="cd-label">Horas</div></div>
+            <div class="cd-box"><div class="cd-num" id="cd-mins">--</div><div class="cd-label">Min</div></div>
+            <div class="cd-box"><div class="cd-num" id="cd-secs">--</div><div class="cd-label">Seg</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="historia">
+      <div class="container grid cols-2">
+        <div class="card">
+          <h2 class="section-title">Nuestra historia ✨</h2>
+          <p class="subtitle">Versión corta, con risas incluidas.</p>
+          <div class="timeline">
+            <div class="t-item">
+              <h3>📅 Nos conocimos</h3>
+              <p>En <b>Lanzarote</b>, en época COVID con mascarillas, pegando tiros, practicando esgrima y participando en alguna carrera de orientación.</p>
+            </div>
+            <div class="t-item">
+              <h3>💌 Primer viaje (Málaga & flechazo)</h3>
+              <p>Viajamos a <b>Málaga</b> para nuestro primer campeonato nacional militar. Entre bares vacíos, cervezas, toques de queda y muy buena gente, una mirada y se encendió la mecha.❤️</p>
+            </div>
+            <div class="t-item">
+              <h3>💍 La pedida</h3>
+              <p>Tras mucho follón, la víspera, con un poco de música romántica y entrada a lo grande, se chafó con un «baja la música...¡mira las horas que son!». 🤦‍♂️ Al día siguiente la sencillez: <b>cuatro rosas</b>, una mirada sincera y la pregunta. Esta vez sí: <b>¡SÍ!</b> 🥲</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h2 class="section-title">Detalles rápidos</h2>
+          <ul>
+            <li><b>Fecha:</b> 31 de octubre de 2026</li>
+            <li><b>Lugar:</b> Teror/Firgas (Gran Canaria)</li>
+            <li><b>Plan:</b> Ceremonia → <b>cóctel</b> → fiesta 🎉</li>
+            <li><b>Hashtag:</b> <code>#BodaPaoYJavi</code></li>
+          </ul>
+          <p class="note">*Es decir: comer, beber, brindar y bailar.*</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="ceremonia">
+      <div class="container grid cols-2">
+        <div class="card">
+          <h2 class="section-title">La ceremonia ⛪</h2>
+          <p class="subtitle">Basílica de Nuestra Señora del Pino (Teror)</p>
+          <p><b>Hora:</b> 12:00 (hora local, Canarias). El que no pueda entrar, o no llegue a tiempo, encontrará varios bares en la cercanía.</p>
+          <p>
+            <a class="btn alt" target="_blank" rel="noopener noreferrer" href="https://maps.app.goo.gl/t2rfw3wiqEK6zihw6">Ver en Google Maps</a>
+            <a class="btn ghost" style="margin-left:.5rem" id="btnCeremonyICS" href="#">Añadir al calendario (.ics)</a>
+          </p>
+        </div>
+        <div class="card" id="fiesta">
+          <h2 class="section-title">La celebración 🥂</h2>
+          <p class="subtitle">Finca Los Pinos (Firgas)</p>
+          <p><b>Horario:</b> desde las 14:00 hasta las 02:00 (hora local, Canarias).</p>
+          <ul>
+            <li>🍸 Bienvenida</li>
+            <li>🍽️ Cóctel larga duración (sin plato principal ni mesas)</li>
+            <li>🎶 Música y baile</li>
+            <li>🍹 Barra libre</li>
+            <li>🕺 Ambiente sin protocolos, simplemente nosotros con todos vosotros</li>
+          </ul>
+          <p>
+            <a class="btn" href="#agenda">Ver agenda</a>
+            <a class="btn ghost" style="margin-left:.5rem" id="btnCelebrationICS" href="#">Añadir al calendario (.ics)</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="agenda">
+      <div class="container">
+        <div class="card">
+          <h2 class="section-title">Agenda del día 🗓️</h2>
+          <p class="subtitle">Horarios aproximados (hora local, Canarias).</p>
+          <div class="agenda">
+            <div class="pill">💒 <div><b>12:00</b><br><span class="muted">Ceremonia</span></div></div>
+            <div class="pill">🍸 <div><b>14:00</b><br><span class="muted">Inicio del cóctel</span></div></div>
+            <div class="pill">🎉 <div><b>20:00</b><br><span class="muted">Música, barra libre y risas</span></div></div>
+            <div class="pill">🌙 <div><b>02:00</b><br><span class="muted">Cierre</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dress">
+      <div class="container">
+        <div class="card">
+          <h2 class="section-title">Dress code 👗👔</h2>
+          <p>No hay que complicarse: elegantes pero cómodos. Lo importante es <b>compartir el momento</b> y <b>disfrutar</b>.</p>
+        </div>
+      </div>
+    </section>
+<!-- Alquiler de coches -->
+<section id="alquiler">
+  <div class="container">
+    <div class="card">
+      <h2 class="section-title">Alquiler de coches 🚘</h2>
+      <p class="subtitle">Opciones recomendadas en Gran Canaria (Aeropuerto LPA)</p>
+
+      <div class="info-cards">
+        <div class="card" style="padding:1rem">
+          <h3>🤝 Locales</h3>
+          <ul style="margin:0;padding-left:1.2rem">
+            <li><a href="https://www.cicar.com" target="_blank" rel="noopener noreferrer">CICAR</a></li>
+            <li><a href="https://www.payless.es" target="_blank" rel="noopener noreferrer">Payless</a></li>
+            <li><a href="https://www.cabreramedina.com" target="_blank" rel="noopener noreferrer">CabreraMedina</a></li>
+            <li><a href="https://top-car-hire.com" target="_blank" rel="noopener noreferrer">TopCar</a></li>
+            <li><a href="https://www.turisprimecanarias.com" target="_blank" rel="noopener noreferrer">TurisPrime</a></li>
+          </ul>
+        </div>
+
+        <div class="card" style="padding:1rem">
+          <h3>💡 Consejo rápido</h3>
+          <ul style="margin:0;padding-left:1.2rem">
+            <li>Reservad con antelación.</li>
+            <li>Cicar, CabreraMedina y Payless van con seguro a todo riesgo incluido</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section id="rsvp">
+      <div class="container grid cols-2">
+        <div class="card">
+          <h2 class="section-title">RSVP ✅</h2>
+          <p class="subtitle">Confírmanos antes del <b>30 de junio de 2026</b>. ¡Nos hace mucha ilusión compartir este día contigo!</p>
+          <div style="text-align:center; padding:2rem 0;">
+            <a 
+              class="btn" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSd5GW2FzmQz2dVXlpylStUSFfXdxkxSHmZD75ejSCceQK0fpw/viewform?usp=sharing&ouid=114028596259590061926">
+              Confirmar asistencia en Google Forms
+            </a>
+            <p class="note">*El formulario se abrirá en una nueva pestaña.*</p>
+          </div>
+        </div>
+        <div class="card">
+          <h2 class="section-title">Detalles prácticos 📌</h2>
+<div class="info-cards">
+  <div class="card" style="padding:1rem">
+    <h3>🏨 Alojamientos</h3>
+    <p>Para los que no son residentes, os recomendamos mirar en Airbnb (civiles) y RLM/ALM (militares).</p>
+  </div>
+
+  <div class="card" style="padding:1rem">
+    <h3>🅿️ Parkings recomendados</h3>
+    <ul style="margin:0;padding-left:1.2rem">
+      <li>
+        <a href="https://maps.app.goo.gl/udeYQkSfWkHMixis7" target="_blank" rel="noopener noreferrer">
+          Parking de pago, a 300m, en el subsuelo de la Plaza de Sintes.
+        </a>
+      </li>
+      <li>
+        <a href="https://maps.app.goo.gl/6DjJgmfeMXPbV7No8" target="_blank" rel="noopener noreferrer">
+          Parking gratuito, a 400m, de tierra y con pequeña cuesta para salir.
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card" style="padding:1rem">
+    <h3>🎁 Lista de boda</h3>
+    <p><b>ES04 1583 0001 1590 6538 8710</b> 💚</p>
+  </div>
+</div>
+      </div>
+    </section>
+<section id="galeria">
+  <div class="container">
+    <h2 class="section-title">Galería 📸</h2>
+    <p class="subtitle">6–7 fotos para ir calentando… y después de la boda, ¡subid las vuestras!</p>
+
+    <div class="gallery" id="galleryFixed">
+      <button class="polaroid polaroid-btn" type="button" style="--r:-2deg" data-full="/assets/galeria/01.jpg" aria-label="Abrir foto 1">
+        <img loading="lazy" decoding="async" alt="Foto 1" src="/assets/galeria/01.jpg" />
+        <div class="caption">Paola & Javi</div>
+      </button>
+
+      <button class="polaroid polaroid-btn" type="button" style="--r:1.5deg" data-full="/assets/galeria/02.jpg" aria-label="Abrir foto 2">
+        <img loading="lazy" decoding="async" alt="Foto 2" src="/assets/galeria/02.jpg" />
+        <div class="caption">Gran Canaria</div>
+      </button>
+
+      <button class="polaroid polaroid-btn" type="button" style="--r:-1deg" data-full="/assets/galeria/03.jpg" aria-label="Abrir foto 3">
+        <img loading="lazy" decoding="async" alt="Foto 3" src="/assets/galeria/03.jpg" />
+        <div class="caption">Equipo</div>
+      </button>
+
+      <button class="polaroid polaroid-btn" type="button" style="--r:2deg" data-full="/assets/galeria/04.jpg" aria-label="Abrir foto 4">
+        <img loading="lazy" decoding="async" alt="Foto 4" src="/assets/galeria/04.jpg" />
+        <div class="caption">Momentos</div>
+      </button>
+
+      <button class="polaroid polaroid-btn" type="button" style="--r:-1.6deg" data-full="/assets/galeria/05.jpg" aria-label="Abrir foto 5">
+        <img loading="lazy" decoding="async" alt="Foto 5" src="/assets/galeria/05.jpg" />
+        <div class="caption">Risas</div>
+      </button>
+
+      <button class="polaroid polaroid-btn" type="button" style="--r:1deg" data-full="/assets/galeria/06.jpg" aria-label="Abrir foto 6">
+        <img loading="lazy" decoding="async" alt="Foto 6" src="/assets/galeria/06.jpg" />
+        <div class="caption">Viajes</div>
+      </button>
+
+      <button class="polaroid polaroid-btn" type="button" style="--r:-0.5deg" data-full="/assets/galeria/07.jpg" aria-label="Abrir foto 7">
+        <img loading="lazy" decoding="async" alt="Foto 7" src="/assets/galeria/07.jpg" />
+        <div class="caption">Nosotros</div>
+      </button>
+    </div>
+  </div>
+</section>
+<section id="fotos-invitados">
+  <div class="container">
+    <div class="card">
+      <h2 class="section-title">Fotos de los invitados 📷</h2>
+      <p class="subtitle">Después de la boda, aquí tendremos el álbum con vuestras fotos y vídeos.</p>
+
+      <div class="grid cols-1">
+        <div class="card" style="padding:1rem">
+
+          <!-- 👇 PEGA AQUÍ el bloque -->
+          <h3>⬆️ Subir fotos</h3>
+
+          <p class="note">
+            Sube aquí tus fotos/vídeos (mejor sin comprimir). Si vas justo de datos, súbelas al llegar al hotel.
+          </p>
+
+          <p>
+            <a class="btn" id="btnUploadPhotos" target="_blank" rel="noopener noreferrer" href="#">
+              Subir fotos
+            </a>
+          </p>
+
+          <div class="qr-wrap" aria-label="Código QR para subir fotos">
+            <img id="qrUpload" alt="QR para subir fotos" loading="lazy" decoding="async" />
+            <p class="note" id="qrHint">Escanea el QR para subir fotos 📷</p>
+          </div>
+
+          <p class="note" id="postWeddingMsg"></p>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:1rem">
+        Consejo: si sale alguien que no quiera aparecer en fotos públicas, nos lo dices y lo cuidamos 💛
+      </p>
+    </div>
+  </div>
+</section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Hecho con ❤ por Paola & Javier. Nos vemos el <b>31/10/2026</b> en Teror/Firgas.</p>
+      <p class="muted">© 2026 · #BodaDePaolaYJavier</p>
+    </div>
+  </footer>
+
+  <div class="floating">
+  <a 
+    class="btn" 
+    href="#rsvp" 
+    aria-label="Confirmar asistencia a la boda"
+  >
+    Confirmar asistencia
+  </a>
+</div>
+
+ <script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ===== Countdown =====
+  (function(){
+    const target = new Date('2026-10-31T12:00:00Z'); // Canarias (UTC+0)
+    const pad = n => String(Math.max(0,n)).padStart(2,'0');
+
+    function tick(){
+      const now = new Date();
+      const diff = Math.max(0, target.getTime() - now.getTime());
+      const sec = Math.floor(diff/1000);
+      const days = Math.floor(sec/86400);
+      const hours = Math.floor((sec%86400)/3600);
+      const mins = Math.floor((sec%3600)/60);
+      const secs = sec%60;
+
+      const ed = document.getElementById('cd-days');
+      const eh = document.getElementById('cd-hours');
+      const em = document.getElementById('cd-mins');
+      const es = document.getElementById('cd-secs');
+
+      if (ed) ed.textContent = days;
+      if (eh) eh.textContent = pad(hours);
+      if (em) em.textContent = pad(mins);
+      if (es) es.textContent = pad(secs);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  // ===== ICS =====
+  function downloadICS(o){
+    const st = (o.startISO||'').split('.')[0].replace(/[-:]/g,'');
+    const en = (o.endISO||'').split('.')[0].replace(/[-:]/g,'');
+    const ts = new Date().toISOString().split('.')[0].replace(/[-:]/g,'');
+    const lf = '\r\n';
+    const ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//PaolaYJavier//Boda//ES',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      'UID:'+Date.now()+'@boda-paola-javier',
+      'DTSTAMP:'+ts+'Z',
+      'DTSTART:'+st+'Z',
+      'DTEND:'+en+'Z',
+      'SUMMARY:'+o.summary,
+      'LOCATION:'+o.location,
+      'DESCRIPTION:'+o.description,
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join(lf);
+
+    const blob = new Blob([ics], {type:'text/calendar'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = o.filename||'evento.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url), 1000);
+  }
+
+  function addCeremonyICS(){
+    downloadICS({
+      summary:'Boda: Ceremonia de Paola y Javier',
+      location:'Basílica de Nuestra Señora del Pino, Teror (Gran Canaria)',
+      description:'Ceremonia católica. ¡No llegues tarde, el "sí, quiero" no se repite! 😅',
+      startISO:'2026-10-31T12:00:00.000Z',
+      endISO:'2026-10-31T13:00:00.000Z',
+      filename:'Ceremonia-Paola-Javier.ics'
+    });
+  }
+
+  function addCelebrationICS(){
+    downloadICS({
+      summary:'Boda: Celebración en Finca Los Pinos',
+      location:'Finca Los Pinos, Firgas (Gran Canaria)',
+      description:'Cóctel y fiesta hasta las 02:00.',
+      startISO:'2026-10-31T14:00:00.000Z',
+      endISO:'2026-11-01T02:00:00.000Z',
+      filename:'Celebracion-Paola-Javier.ics'
+    });
+  }
+
+  const b1 = document.getElementById('btnCeremonyICS');
+  if (b1) b1.addEventListener('click', (e)=>{ e.preventDefault(); addCeremonyICS(); });
+
+  const b2 = document.getElementById('btnCelebrationICS');
+  if (b2) b2.addEventListener('click', (e)=>{ e.preventDefault(); addCelebrationICS(); });
+
+  // ===== Menú activo =====
+  (function(){
+    const navLinks = Array.from(document.querySelectorAll('.menu a[href^="#"]'));
+    const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    if (!('IntersectionObserver' in window) || sections.length === 0) return;
+
+    const header = document.querySelector('header');
+    const headerH = header ? header.offsetHeight : 0;
+
+    function setActive(id){
+      navLinks.forEach(a => {
+        const isActive = a.getAttribute('href') === `#${id}`;
+        a.classList.toggle('active', isActive);
+        if (isActive) a.setAttribute('aria-current', 'page');
+        else a.removeAttribute('aria-current');
+      });
+    }
+
+    const obs = new IntersectionObserver((entries) => {
+      const visible = entries.filter(e => e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+      if (visible?.target?.id) setActive(visible.target.id);
+    }, {
+      root: null,
+      rootMargin: `-${headerH + 10}px 0px -55% 0px`,
+      threshold: [0.15, 0.25, 0.35, 0.5, 0.65]
+    });
+
+    sections.forEach(sec => obs.observe(sec));
+    const initial = (location.hash && document.querySelector(location.hash)) ? location.hash.slice(1) : sections[0].id;
+    if (initial) setActive(initial);
+  })();
+
+  // ===== Subida de fotos (pre/post boda) =====
+  (function(){
+    const UPLOAD_URL = 'https://drive.google.com/drive/folders/1z-LW-I-PIOgvybfgaSQRnIMeXafvrqwp?usp=share_link';
+    const WEDDING_DATE = new Date('2026-10-31T12:00:00Z'); // Canarias (UTC+0)
+
+    const postWedding = new Date() >= WEDDING_DATE;
+
+    const upBtn = document.getElementById('btnUploadPhotos');
+    if (upBtn) {
+      upBtn.href = UPLOAD_URL;
+      upBtn.textContent = postWedding ? 'Subir fotos' : 'Subida de fotos (tras la boda)';
+      upBtn.classList.toggle('ghost', !postWedding);
+      upBtn.setAttribute('aria-disabled', String(!postWedding));
+      if (!postWedding) upBtn.addEventListener('click', e => e.preventDefault());
+    }
+
+    const qr = document.getElementById('qrUpload');
+    const qrHint = document.getElementById('qrHint');
+    if (qr) {
+      qr.src = 'https://api.qrserver.com/v1/create-qr-code/?size=360x360&data=' + encodeURIComponent(UPLOAD_URL);
+      if (qrHint) qrHint.textContent = postWedding ? 'Escanea para subir tus fotos 📷' : 'El QR se activará tras la boda 📅';
+    }
+
+    const msg = document.getElementById('postWeddingMsg');
+    if (msg) {
+      msg.textContent = postWedding
+        ? '¡Gracias por compartir este día con nosotros! Si subes fotos, nos haces muy felices 💛'
+        : 'Tras la boda activaremos este espacio para que podáis subir vuestras fotos y vídeos 💛';
+    }
+  })();
+
+  // ===== Lightbox galería =====
+  (function(){
+    const items = Array.from(document.querySelectorAll('#galleryFixed .polaroid-btn'));
+    if (!items.length) return;
+
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbClose = document.getElementById('lbClose');
+    const lbPrev = document.getElementById('lbPrev');
+    const lbNext = document.getElementById('lbNext');
+    if (!lb || !lbImg || !lbClose || !lbPrev || !lbNext) return;
+
+    const urls = items.map(b => b.getAttribute('data-full') || b.querySelector('img')?.src).filter(Boolean);
+    let idx = 0;
+
+    function openAt(i){
+      idx = (i + urls.length) % urls.length;
+      lbImg.src = urls[idx];
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden','false');
+    }
+    function close(){
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden','true');
+    }
+    const prev = ()=>openAt(idx - 1);
+    const next = ()=>openAt(idx + 1);
+
+    items.forEach((btn, i)=> btn.addEventListener('click', ()=> openAt(i)));
+    lb.addEventListener('click', (e)=>{ if (e.target === lb) close(); });
+    lbClose.addEventListener('click', close);
+    lbPrev.addEventListener('click', prev);
+    lbNext.addEventListener('click', next);
+
+    document.addEventListener('keydown', (e)=>{
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
+    });
+  })();
+
+});
+</script>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox-inner" role="dialog" aria-modal="true" aria-label="Visor de imágenes">
+    <button class="lightbox-close btn alt" id="lbClose" type="button" aria-label="Cerrar">×</button>
+    <button class="lightbox-nav lightbox-prev btn ghost" id="lbPrev" type="button" aria-label="Anterior">‹</button>
+    <button class="lightbox-nav lightbox-next btn ghost" id="lbNext" type="button" aria-label="Siguiente">›</button>
+    <img class="lightbox-img" id="lbImg" alt="Imagen ampliada" />
+  </div>
+</div>
+
+</body>
+</html>

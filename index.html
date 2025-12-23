@@ -218,9 +218,15 @@
 }
 /* Galería fija clicable */
 .gallery button.polaroid-btn{
-  all:unset;
+  appearance:none;
+  -webkit-appearance:none;
+  border:0;
+  padding:0;
+  background:transparent;
   cursor:pointer;
   display:block;
+  width:100%;
+  text-align:inherit;
 }
 .gallery button.polaroid-btn:focus-visible{
   outline:3px solid rgba(106,124,104,.35);

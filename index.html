@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>¡Nos casamos! | Paola y Javier</title>
-  <meta name="description" content="Web de boda divertida y desenfadada de Paola y Javier. Información de ceremonia, fiesta, RSVP, hoteles y más." />
+  <meta name="description" content="Web de boda divertida y desenfadada de Paola y Javier. Información de ceremonia, fiesta, guaguas, hoteles y más." />
   <meta name="theme-color" content="#6A7C68" />
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website" />
@@ -296,7 +296,6 @@
         <a href="#agenda">Agenda</a>
         <a href="#dress">Dress code</a>
         <a href="#alquiler">Alquiler vehículos</a>
-        <a href="#rsvp" class="btn ghost">RSVP</a>
       </nav>
     </div>
   </header>
@@ -370,7 +369,7 @@
         <div class="card" id="fiesta">
           <h2 class="section-title">La celebración 🥂</h2>
           <p class="subtitle">Finca Los Pinos (Firgas)</p>
-          <p><b>Horario:</b> desde las 14:00 hasta las 02:00 (hora local, Canarias).</p>
+          <p><b>Horario:</b> desde las 14:00 hasta las 00:30 (hora local, Canarias).</p>
           <ul>
             <li>🍸 Bienvenida</li>
             <li>🍽️ Cóctel larga duración (sin plato principal ni mesas)</li>
@@ -395,7 +394,7 @@
             <div class="pill">💒 <div><b>12:00</b><br><span class="muted">Ceremonia</span></div></div>
             <div class="pill">🍸 <div><b>14:00</b><br><span class="muted">Inicio del cóctel</span></div></div>
             <div class="pill">🎉 <div><b>20:00</b><br><span class="muted">Música, barra libre y risas</span></div></div>
-            <div class="pill">🌙 <div><b>02:00</b><br><span class="muted">Cierre</span></div></div>
+            <div class="pill">🌙 <div><b>00:30</b><br><span class="muted">Cierre</span></div></div>
           </div>
         </div>
       </div>
@@ -440,22 +439,48 @@
   </div>
 </section>
 
-    <section id="rsvp">
+    <section id="info">
       <div class="container grid cols-2">
         <div class="card">
-          <h2 class="section-title">RSVP ✅</h2>
-          <p class="subtitle">Confírmanos antes del <b>30 de junio de 2026</b>. ¡Nos hace mucha ilusión compartir este día contigo!</p>
-          <div style="text-align:center; padding:2rem 0;">
-            <a 
-              class="btn" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              href="https://docs.google.com/forms/d/e/1FAIpQLSd5GW2FzmQz2dVXlpylStUSFfXdxkxSHmZD75ejSCceQK0fpw/viewform?usp=sharing&ouid=114028596259590061926">
-              Confirmar asistencia en Google Forms
-            </a>
-            <p class="note">*El formulario se abrirá en una nueva pestaña.*</p>
-          </div>
-        </div>
+  <h2 class="section-title">Guaguas 🚌</h2>
+
+  <p class="subtitle">
+    Hemos organizado transporte para facilitaros los desplazamientos durante la boda.
+  </p>
+
+  <div class="info-cards">
+
+    <div class="card" style="padding:1rem">
+      <h3>➡️ Ida a Teror</h3>
+      <p>
+        <b>31/10/2026 · 11:00</b><br>
+        Salida desde la parada de bus de <b>Paseo de Chil - Plaza de España</b>.
+      </p>
+    </div>
+
+    <div class="card" style="padding:1rem">
+      <h3>💒 Tras la ceremonia</h3>
+      <p>
+        Al finalizar la ceremonia en Teror, el autobús saldrá directamente hacia
+        <b>Finca Los Pinos</b>.
+      </p>
+    </div>
+
+    <div class="card" style="padding:1rem">
+      <h3>⬅️ Regreso</h3>
+      <p>
+        <b>01/11/2026 · 00:30</b><br>
+        Salida desde Finca Los Pinos con paradas en:
+      </p>
+      <ul>
+        <li>Vegueta</li>
+        <li>Metropole</li>
+        <li>Plaza de España</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
         <div class="card">
           <h2 class="section-title">Detalles prácticos 📌</h2>
 <div class="info-cards">
@@ -590,17 +615,7 @@
       <p class="muted">© 2026 · #BodaDePaolaYJavier</p>
     </div>
   </footer>
-
-  <div class="floating">
-  <a 
-    class="btn" 
-    href="#rsvp" 
-    aria-label="Confirmar asistencia a la boda"
-  >
-    Confirmar asistencia
-  </a>
-</div>
-
+  
  <script>
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -679,9 +694,9 @@ document.addEventListener('DOMContentLoaded', () => {
     downloadICS({
       summary:'Boda: Celebración en Finca Los Pinos',
       location:'Finca Los Pinos, Firgas (Gran Canaria)',
-      description:'Cóctel y fiesta hasta las 02:00.',
+      description:'Cóctel y fiesta hasta las 00:30.',
       startISO:'2026-10-31T14:00:00.000Z',
-      endISO:'2026-11-01T02:00:00.000Z',
+      endISO:'2026-11-01T00:30:00.000Z',
       filename:'Celebracion-Paola-Javier.ics'
     });
   }
